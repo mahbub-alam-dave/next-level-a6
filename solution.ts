@@ -79,3 +79,35 @@ const users = [
   { id: 3, name: 'Rumi', email: 'rumi@example.com', isActive: true },
 ];
 
+
+interface Book {
+    title: string;
+    author: string;
+    publishedYear: number;
+    isAvailable: boolean;
+}
+
+const printBookDetails = (bookDetails: Book) => {
+return `Title: ${bookDetails.title}, Author: ${bookDetails.author}, Published: ${bookDetails.publishedYear}, Available: ${bookDetails.isAvailable === true ? "Yes" : "No"}`
+}
+
+const myBook: Book = {
+  title: 'The Great Gatsby',
+  author: 'F. Scott Fitzgerald',
+  publishedYear: 2000,
+  isAvailable: false,
+};
+
+
+type ArrayType = string[] | number[]
+
+const getUniqueValues = (array1: ArrayType, array2: ArrayType)  => {
+    let newArray = [...array1];
+        for(let val of array2) {
+            if(!newArray.includes(val)){
+                newArray.push(val)
+            }
+            }
+            return newArray
+}
+

@@ -111,3 +111,32 @@ const getUniqueValues = (array1: ArrayType, array2: ArrayType)  => {
             return newArray
 }
 
+
+
+
+type Products = {
+    name: string;
+    price: number;
+    quantity:number;
+    discount?: number | undefined;
+}
+
+const calculateTotalPrice = (arrayOfProducts: Products[]) => {
+    let totalPrice = 0
+    if(arrayOfProducts.length === 0) {
+        return totalPrice;
+    }
+    totalPrice = arrayOfProducts.reduce((totals, item) => {
+        totals += ((item.price * item.quantity) - (item.discount ? (item.price * item.quantity) * item.discount/100 : 0))
+        return totals
+    }, 0)
+
+    return totalPrice
+    
+}
+
+const products  = [
+  { name: 'Pen', price: 10, quantity: 2 },
+  { name: 'Notebook', price: 25, quantity: 3, discount: 10 },
+  { name: 'Bag', price: 50, quantity: 1, discount: 20 },
+];

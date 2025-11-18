@@ -1,4 +1,4 @@
-// Beginning of next level courses assignment one
+
 const formatValue = (input : number | string | boolean) : number | string | boolean => {
     if(typeof input === "number"){
         return input * 10
@@ -9,6 +9,7 @@ const formatValue = (input : number | string | boolean) : number | string | bool
     }
 }
 
+
 type ArrayInput = string[] | number[] | boolean[]
 const getLength = (input: string | ArrayInput) => {
     if(typeof input === "string") {
@@ -17,6 +18,8 @@ const getLength = (input: string | ArrayInput) => {
         return input.length
     }
 }
+
+
 
 class Person {
     name: string;
@@ -28,12 +31,12 @@ class Person {
     }
 
     getDetails(){
-        return `Name: ${this.name}, Age: ${this.age}`
+        return `'Name: ${this.name}, Age: ${this.age}'`
     }
 }
 
-const person1 = new Person('John Doe', 30);
-const person2 = new Person('Alice', 25);
+
+
 
 type Items = {
     title: string,
@@ -50,11 +53,8 @@ const filterByRating = (arrayOfItems: Items[]): Items[] => {
 
 }
 
-const books : Items[] = [
-  { title: 'Book A', rating: 4.5 },
-  { title: 'Book B', rating: 3.2 },
-  { title: 'Book C', rating: 5.0 },
-];
+
+
 
 type Users = {
     id: number;
@@ -73,11 +73,7 @@ const filterActiveUsers = (arrayOfUsers: Users[]) : Users[] => {
     return activeUsers;
 }
 
-const users = [
-  { id: 1, name: 'Rakib', email: 'rakib@example.com', isActive: true },
-  { id: 2, name: 'Asha', email: 'asha@example.com', isActive: false },
-  { id: 3, name: 'Rumi', email: 'rumi@example.com', isActive: true },
-];
+
 
 
 interface Book {
@@ -91,24 +87,30 @@ const printBookDetails = (bookDetails: Book) => {
 return `Title: ${bookDetails.title}, Author: ${bookDetails.author}, Published: ${bookDetails.publishedYear}, Available: ${bookDetails.isAvailable === true ? "Yes" : "No"}`
 }
 
-const myBook: Book = {
-  title: 'The Great Gatsby',
-  author: 'F. Scott Fitzgerald',
-  publishedYear: 2000,
-  isAvailable: false,
-};
 
 
-type ArrayType = string[] | number[]
 
-const getUniqueValues = (array1: ArrayType, array2: ArrayType)  => {
-    let newArray = [...array1];
-        for(let val of array2) {
-            if(!newArray.includes(val)){
-                newArray.push(val)
+const getUniqueValues = <T extends string | number>(array1: T[], array2: T[]): T[] => {
+    let newArray: T[] = [];
+
+    const checkNewArray = (value: T) => {
+        for(let i = 0; i < newArray.length; i++){
+            if(newArray[i] === value) return true
+        }
+    }
+
+    for(let i = 0; i < array1.length; i++){
+            if(checkNewArray(array1[i]) !== true){
+                newArray[newArray.length] = array1[i]
             }
+    }
+
+    for(let i = 0; i < array2.length; i++){
+            if(checkNewArray(array2[i]) !== true){
+                newArray[newArray.length] = array2[i]
             }
-            return newArray
+    }
+    return newArray
 }
 
 
@@ -118,7 +120,7 @@ type Products = {
     name: string;
     price: number;
     quantity:number;
-    discount?: number | undefined;
+    discount?: number;
 }
 
 const calculateTotalPrice = (arrayOfProducts: Products[]) => {
@@ -135,8 +137,3 @@ const calculateTotalPrice = (arrayOfProducts: Products[]) => {
     
 }
 
-const products  = [
-  { name: 'Pen', price: 10, quantity: 2 },
-  { name: 'Notebook', price: 25, quantity: 3, discount: 10 },
-  { name: 'Bag', price: 50, quantity: 1, discount: 20 },
-];
